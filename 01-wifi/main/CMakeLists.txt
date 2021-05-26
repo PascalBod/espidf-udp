@@ -1,8 +1,2 @@
-# Edit following two lines to set component requirements (see docs)
-set(COMPONENT_REQUIRES )
-set(COMPONENT_PRIV_REQUIRES )
-
-set(COMPONENT_SRCS "main.c" "wifi.c")
-set(COMPONENT_ADD_INCLUDEDIRS "")
-
-register_component()
+idf_component_register(SRCS "udp_sender.c" "supervisor.c" "connect_wifi.c" "send_datagram.c" "utilities.c"
+                    INCLUDE_DIRS ".")
