@@ -132,7 +132,7 @@ The application is made of three tasks:
 * *send_datagram*
 * *supervisor*
 
-<a name="connect_wifi"></a>
+<a name="connectWifi"></a>
 
 ### connect_wifi
 
@@ -161,7 +161,7 @@ Several transitions are not present in the diagram, in order to keep it simple:
 
 The send_datagram message is accepted only when the task is in wait_msg_disconnect state.
 
-<a name="send_datagram"></a>
+<a name="sendDatagram"></a>
 
 ### send_datagram
 
