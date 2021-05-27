@@ -1,4 +1,4 @@
-menu "UdpSender Configuration"
+menu "Espidf-udp Configuration"
 
     config UDPSENDER_WIFI_SSID
         string "WiFi SSID"

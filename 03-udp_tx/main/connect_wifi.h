@@ -1,27 +1,29 @@
 /**
- * This file is part of UdpSender.
+ * This file is part of espidf-udp.
  *
- * UdpSender is free software: you can redistribute it and/or modify
+ * espidf-udp is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * UdpSender is distributed in the hope that it will be useful,
+ * espidf-udp is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with UdpSender.  If not, see <https://www.gnu.org/licenses/>.
+ * along with espidf-udp.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Copyright 2020 Pascal Bodin
  */
 
-#ifndef MAIN_SUPERVISOR_H_
-#define MAIN_SUPERVISOR_H_
+#ifndef MAIN_CONNECT_WIFI_H_
+#define MAIN_CONNECT_WIFI_H_
 
-extern QueueHandle_t sv_input_queue;
+#include "freertos/queue.h"
 
-void supervisor_task(void *pvParameters);
+extern QueueHandle_t cw_input_queue;
 
-#endif /* MAIN_SUPERVISOR_H_ */
+void connect_wifi_task(void *pvParameters);
+
+#endif /* MAIN_CONNECT_WIFI_H_ */

@@ -1,12 +1,6 @@
 # Table of contents
 
 * [Overview](#overview)
-* [Target](#target)
-* [Development environment](#developmentEnvironment)
-* [Reference documents](#referenceDocuments)
-* [Configure](#configure)
-* [Build and flash](#buildAndFlash)
-* [End-to-end test](#endToEndTest)
 * [Architecture](#architecture)
   * [Tasks](#tasks)
   * [Message protocol](#messageProtocol)
@@ -15,83 +9,15 @@
     * [send_datagram](#sendDatagram)
     * [supervisor](#supervisor)
   * [Overview of messages and tasks](#overviewOfMessagesAndTasks)
-* [License](#license)
 
 <a name="overview"></a>
 
 # Overview
 
 This application initiates a connection to a Wi-Fi access point. Once the connection 
-is established, it sends a UDP datagram to a remote IP address and port.
+is established, it sends UDP datagrams to a remote IP address and port, on a periodic basis.
 
-When the connection is lost, the application tries to reconnect on a periodic basis.
-
-There are two takeaways in this sample application:
-* how to handle a connection to the Internet via a Wi-Fi access point, in a way that can easily be adapted to "rainy days", as Espressif says in [their documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/wifi.html#event-handling)
-* the use of a design pattern relying on non-blocking inter-task communication (see [this article](https://www.monblocnotes.org/node/1906) for a little bit more information)
-
-<a name="target"></a>
-
-# Target
-
-The hardware target is an [ESP32-DevKitC](https://www.espressif.com/en/products/devkits/esp32-devkitc/overview) with an ESP32-WROVER-B module.
-
-ESP-IDF release is `4.2.1`.
-
-<a name="developmentEnvironment"></a>
-
-# Development environment
-
-This [short tutorial](https://github.com/PascalBod/lm20.1-esp32-eclipse) explains how to set up a virtual machine configured for ESP32 software development with Eclipse.
-
-<a name="referenceDocuments"></a>
-
-# Reference documents
-
-* [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/v4.2.1/esp32/index.html)
-* [Wi-Fi Driver](https://docs.espressif.com/projects/esp-idf/en/v4.2.1/esp32/api-guides/wifi.html)
-* [General Notes About ESP-IDF Programming / Application startup](https://docs.espressif.com/projects/esp-idf/en/v4.2.1/esp32/api-guides/general-notes.html#application-startup)
-
-<a name="configure"></a>
-
-# Configure
-
-To configure the application, run `idf.py menuconfig`, and select **UdpSender Configuration**. Set following parameters:
-* **WiFi SSID**: the SSID of the access point to be used
-* **WiFi Password**: associated password
-* **Retry Period, in ms**: period between two successive connection attempts, after the connection has been lost
-* **IPV4 Address**: address of the host where to send datagrams
-* **Port**: host port 
-
-<a name="buildAndFlash"></a>
-
-# Build and flash
- 
-To build, flash and monitor the output from the application, run:
-
-```
-idf.py -p <port> flash monitor
-```
-
-Replace `<port>` by the name of the serial-over-USB port.
-
-To exit the serial monitor, type ``Ctrl-]``.
-
-<a name="endToEndTest"></a>
-
-# End-to-end test
-
-A simple configuration is to run an UDP server on a computer that is on the same LAN that the Wi-Fi access point.
-
-Configure the application with the IP address of this computer. 
-
-Then, if this computer runs Linux or macOS, enter the following command:
-
-```
-nc -u -lk 0.0.0.0 44444
-```
-
-Every received datagram will be displayed.
+When the connection with the Wi-Fi access point is lost, the application tries to reconnect.
 
 <a name="architecture"></a>
 
@@ -192,14 +118,3 @@ When it receives an internal_error message, it reacts depending on the origin of
 The following diagram presents the messages that can be exchanged between the tasks:
 
 ![](tasks.svg)
-
-<a name="license"></a>
-
-# License
-
-UdpSender is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version. Check the `COPYING` file for 
-more information.
-
