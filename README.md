@@ -51,6 +51,8 @@ To configure an ESP-IDF application, run `idf.py menuconfig`, and select **Espid
 <a name="buildAndFlash"></a>
 
 # Building and flashing
+
+## From command prompt
  
 To build, flash and monitor the output from an ESP-IDF application, run:
 
@@ -61,6 +63,10 @@ idf.py -p <port> flash monitor
 Replace `<port>` by the name of the serial-over-USB port.
 
 To exit the serial monitor, type ``Ctrl-]``.
+
+## From Eclipse
+
+Check the end of this [short tutorial](https://github.com/PascalBod/lm20.1-esp32-eclipse).
 
 <a name="license"></a>
 

@@ -121,14 +121,14 @@ CONFIG_PARTITION_TABLE_MD5=y
 # end of Partition Table
 
 #
-# UdpSender Configuration
+# Espidf-udp Configuration
 #
 CONFIG_UDPSENDER_WIFI_SSID="PPAL"
 CONFIG_UDPSENDER_WIFI_PASSWORD="celmdpdr"
 CONFIG_UDPSENDER_RETRY_PERIOD_MS=10000
 CONFIG_UDPSENDER_IPV4_ADDR="192.168.1.26"
 CONFIG_UDPSENDER_PORT=44444
-# end of UdpSender Configuration
+# end of Espidf-udp Configuration
 
 #
 # Compiler options
