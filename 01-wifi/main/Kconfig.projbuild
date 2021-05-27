@@ -1,0 +1,22 @@
+menu "Espidf-udp Configuration"
+
+    config UDPSENDER_WIFI_SSID
+        string "WiFi SSID"
+        default "test"
+        help
+            SSID (network name) for UdpSender to connect to.
+
+    config UDPSENDER_WIFI_PASSWORD
+        string "WiFi Password"
+        default "pwdtest01"
+        help
+            WiFi password (WPA or WPA2) forUdpSender to use.
+
+    config UDPSENDER_RETRY_PERIOD_MS
+        int "Retry Period, in ms"
+        range 0 65535
+        default 10000
+        help
+            Set the period between two successive connection attempts.
+
+endmenu
