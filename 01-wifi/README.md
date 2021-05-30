@@ -2,8 +2,6 @@
 
 * [Overview](#overview)
 * [Architecture](#architecture)
-  * [Tasks](#tasks)
-  * [Message protocol](#messageProtocol)
   * [Application tasks](#applicationTasks)
     * [connect_wifi](#connectWifi)
     * [supervisor](#supervisor)
@@ -20,32 +18,6 @@ When the connection with the Wi-Fi access point is lost, the application tries t
 <a name="architecture"></a>
 
 # Architecture
-
-<a name="tasks"></a>
-
-## Tasks
-
-The application is built by composing *tasks*. A task is implemented as a FreeRTOS task, and has the following characteristics:
-* the task is in one of a finite number of states at any given time
-* the task can receive *messages*
-* a message is sent to the task's *input queue*, a queue owned by the task
-* the send operation is non blocking
-* all received messages are processed by the task in order of reception (First In, First Out)
-* the task changes from its current state to another one depending on each message
-* after having processed a message, the task may generate one or more messages to some other task(s)
-* when the task encounters an unrecoverable error, it sends a message to the supervisor task (see below) and enters an error state that it will never leave
-
-Each task implements a finite state machine.
-
-In order to be able to send a message to another task, a task must know the queue of the other task. In the current implementation, in order to keep it very simple, all queues are globally accessible.
-
-A specific task, the *supervisor* task, is in charge of ensuring application consistency. It receives error messages from other tasks when these ones encounter unrecoverable errors, so that it can act on other tasks accordingly.
-
-<a name="messageProtocol"></a>
-
-## Message protocol
-
-It's up to every task to define its message protocol, namely the list of messages it accepts, and how it reacts to each of them. The possible reactions are defined as transitions from one state to another one, depending on the messages, and as actions that are performed when entering a new state.
 
 <a name="applicationTasks"></a>
 
