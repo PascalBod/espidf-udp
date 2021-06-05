@@ -1,7 +1,5 @@
-# This python script listens on UDP port 3333 
-# for messages from the ESP32 board and prints them.
-# 
-# Derived from https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/examples/WiFiUDPClient/udp_server.py
+# This python program listens on UDP port 3333 
+# for messages from the ESP32 and prints them.
 
 import socket
 import sys

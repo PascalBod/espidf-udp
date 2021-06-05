@@ -18,16 +18,16 @@
 
 # Overview
 
-This repository contains several applications that demonstrate step-by-step how to exchange UDP messages between an ESP-IDF application and a PC application.
+This repository contains several applications that demonstrate step-by-step how to exchange an ESP-IDF application and a PC application using UDP datagrams.
 
 These applications are:
 * *wifi*, stored in `01-wifi` directory: an ESP-IDF application that demonstrates how to connect to a Wi-Fi Access Point
-* *pc_udp_rx*, stored in `02-pc_udp_rx` directory: a PC Python application that waits for UDP messages and displays them
-* *udp_tx*, stored in `03-udp_tx` directory: an ESP-IDF application that sends UDP messages to *pc_udp_rx*
-* *udp_txrx*, stored in `04-udp_txrx` directory: an ESP-IDF application that sends and receives messages
-* *pc_udp_tx*, stored in `05-pc_udp_tx` directory: a PC Python application that sends UDP messages
+* *pc_udp_rx*, stored in `02-pc_udp_rx` directory: a PC Python application that waits for UDP datagrams and displays them
+* *udp_tx*, stored in `03-udp_tx` directory: an ESP-IDF application that sends UDP datagrams to *pc_udp_rx*
+* *udp_txrx*, stored in `04-udp_txrx` directory: an ESP-IDF application that sends and receives datagrams
+* *pc_udp_tx*, stored in `05-pc_udp_tx` directory: a PC Python application that sends UDP datagrams
 
-There are two takeaways in the sample ESP-IDF applications:
+The ESP-IDF applications demonstrates:
 * how to handle a connection to the Internet via a Wi-Fi access point, in a way that can easily be adapted to "rainy days", as Espressif says in [their documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/wifi.html#event-handling)
 * the use of a design pattern relying on non-blocking inter-task communication (see [this article](https://www.monblocnotes.org/node/1906) for a little bit more information)
 
@@ -35,11 +35,13 @@ There are two takeaways in the sample ESP-IDF applications:
 
 # Target
 
-The target for the ESP-IDF applications is an [ESP32-DevKitC](https://www.espressif.com/en/products/devkits/esp32-devkitc/overview) with an ESP32-WROVER-B module.
+The target for the ESP-IDF applications is an [ESP32-DevKitC](https://www.espressif.com/en/products/devkits/esp32-devkitc/overview) with an ESP32-WROVER-B module. Any equivalent module can be used.
 
 ESP-IDF release is `4.2.1`.
 
 The target for the PC applications is a PC with Python 3.
+
+The PC and the ESP32 module must be connected to the same LAN. This is the case if the two of them connect to your home Wi-Fi Access Point, for instance.
 
 <a name="developmentEnvironmentESPIDF"></a>
 
@@ -66,6 +68,8 @@ To configure an ESP-IDF application, run `idf.py menuconfig`, and select **Espid
 * **IPV4 Address**: address of the host where to send datagrams
 * **Destination Port**: host port where to send datagrams
 * **Reception port**: local port waiting for datagrams
+
+The configuration can be modified from Eclipse as well (check the [documentation](https://github.com/espressif/idf-eclipse-plugin)).
 
 <a name="buildingAndFlashing"></a>
 
@@ -120,6 +124,8 @@ Each task implements a finite state machine.
 In order to be able to send a message to another task, a task must know the queue of the other task. In the current implementation, in order to keep it very simple, all queues are globally accessible.
 
 A specific task, the *supervisor* task, is in charge of ensuring application consistency. It receives error messages from other tasks when these ones encounter unrecoverable errors, so that it can act on other tasks accordingly.
+
+In these sample applications, the supervisor task is kept very simple: it does not try to act on errors.
 
 <a name="aaMessageProtocol"></a>
 

@@ -322,6 +322,7 @@ void connect_wifi_task(void *pvParameters) {
 					break;
 				}
 				current_state = CW_WAIT_CONNECT_MSG_ST;
+				break;
 			}
 			if (received_message.message == CW_AP_NOK) {
 				// We got disconnected.

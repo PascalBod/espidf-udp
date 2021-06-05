@@ -164,6 +164,9 @@ void send_datagram_task(void *pvParameters) {
 						(uint8_t)connected);
 				if (connected) {
 					ESP_LOGI(TAG, "SD_WAIT_SEND_PERIOD_ST - sending a datagram - %03d", payload_counter);
+					// Important: the message payload is sent as a pointer to a local string. This string
+					// must be kept available and must not be modified, until it has been sent by
+					// connect_wifi task.
 					send_and_wait((uint8_t *)payload_data, payload_length,
 							      timer, &current_state);
 					if (current_state == SD_ERROR_ST) {

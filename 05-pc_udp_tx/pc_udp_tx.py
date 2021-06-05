@@ -9,7 +9,11 @@ counter = 1
 # Adapt to the IP address of the ESP32.
 serverAddressPort   = ("192.168.1.27", 3333)
 
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+try :
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+except OSError as msg :
+    print(f'Failed to create socket. Error Code : {str(msg[0])} - Message {msg[1]}')
+    sys.exit()
 
 while 1:
     msg = f'This is message {counter:03} from PC.'

@@ -31,7 +31,7 @@ The application is made of two tasks:
 
 ### connect_wifi
 
-The connect_wifi task is in charge of maintaining a connection to the Internet via a given Wi-Fi access point, and sending UDP datagrams to a remote host.
+The connect_wifi task is in charge of maintaining a connection to the Internet via a given Wi-Fi access point.
 
 It accepts the following messages:
 * *connect* - payload: the Wi-Fi access point to use
@@ -57,7 +57,7 @@ Several transitions are not present in the diagram, in order to keep it simple:
 
 The supervisor task starts the connect_wifi task and then sends the connect messages to it.
 
-When it receives an internal_error message, it reacts depending on the origin of the error.
+When it receives an internal_error message, it reacts depending on the origin of the error. Currently, it simply generates a log message.
 
 <a name="overviewOfMessagesAndTasks"></a>
 

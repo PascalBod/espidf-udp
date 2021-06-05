@@ -81,7 +81,7 @@ After initialization, the task waits for a connection_status message informing i
 
 The supervisor task starts the connect_wifi task and then sends the connect messages to it.
 
-When it receives an internal_error message, it reacts depending on the origin of the error.
+When it receives an internal_error message, it reacts depending on the origin of the error. Currently, it simply generates a log message.
 
 <a name="overviewOfMessagesAndTasks"></a>
 
