@@ -5,6 +5,7 @@
   * [Application tasks](#applicationTasks)
     * [connect_wifi](#connectWifi)
     * [send_datagram](#sendDatagram)
+    * [rec_datagram](#recDatagram)
     * [supervisor](#supervisor)
   * [Overview of messages and tasks](#overviewOfMessagesAndTasks)
 
@@ -14,6 +15,8 @@
 
 This application initiates a connection to a Wi-Fi access point. Once the connection 
 is established, it sends UDP datagrams to a remote IP address and port, on a periodic basis.
+Additionally, it waits for incoming UDP datagrams. When one is received, a log message
+displays its contents and the IP address of the node that sent it.
 
 When the connection with the Wi-Fi access point is lost, the application tries to reconnect.
 
@@ -25,9 +28,10 @@ When the connection with the Wi-Fi access point is lost, the application tries t
 
 ## Application tasks
 
-The application is made of three tasks:
+The application is made of four tasks:
 * *connect_wifi*
 * *send_datagram*
+* *rec_datagram*
 * *supervisor*
 
 <a name="connectWifi"></a>
@@ -74,6 +78,18 @@ It generates the following messages:
 * *internal_error* - payload: internal error - generated on an internal error - sent to the supervisor task
 
 After initialization, the task waits for a connection_status message informing it that access to the Internet is available. Upon reception of this message, it sends the send_datagram message to the connect_wifi task. Then, on a periodic basis, it sends another send_datagram message, until it receives a connection_status message saying that the access to the Internet is lost.
+
+<a name="recDatagram"></a>
+
+### rec_datagram
+
+The rec_datagram task waits for incoming UDP datagrams. When one is received, a log message displays
+its contents and the IP address of the host that sent it.
+
+It accepts no message.
+
+It generates the following messages:
+* *internal_error* - payload: internal error - generated on an internal error - sent to the supervisor task
 
 <a name="supervisor"></a>
 

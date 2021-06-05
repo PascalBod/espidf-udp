@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.2" width="135mm" height="105mm" viewBox="0 0 13500 10500" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:presentation="http://sun.com/xmlns/staroffice/presentation" xmlns:smil="http://www.w3.org/2001/SMIL20/" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xml:space="preserve">
+<svg version="1.2" width="175mm" height="105mm" viewBox="0 0 17500 10500" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:presentation="http://sun.com/xmlns/staroffice/presentation" xmlns:smil="http://www.w3.org/2001/SMIL20/" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xml:space="preserve">
  <defs class="ClipPathGroup">
   <clipPath id="presentation_clip_path" clipPathUnits="userSpaceOnUse">
-   <rect x="0" y="0" width="13500" height="10500"/>
+   <rect x="0" y="0" width="17500" height="10500"/>
   </clipPath>
   <clipPath id="presentation_clip_path_shrink" clipPathUnits="userSpaceOnUse">
-   <rect x="13" y="10" width="13473" height="10479"/>
+   <rect x="17" y="10" width="17465" height="10479"/>
   </clipPath>
  </defs>
  <defs>
@@ -35,7 +35,7 @@
   </font>
  </defs>
  <defs class="TextShapeIndex">
-  <g ooo:slide="id1" ooo:id-list="id3 id4 id5 id6 id7 id8 id9 id10 id11 id12 id13 id14 id15"/>
+  <g ooo:slide="id1" ooo:id-list="id3 id4 id5 id6 id7 id8 id9 id10 id11 id12 id13 id14 id15 id16 id17 id18"/>
  </defs>
  <defs class="EmbeddedBulletChars">
   <g id="bullet-char-template-57356" transform="scale(0.00048828125,-0.00048828125)">
@@ -164,6 +164,26 @@
        <g id="id15">
         <rect class="BoundingBox" stroke="none" fill="none" x="8606" y="2500" width="3695" height="746"/>
         <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Sans, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="8856" y="2943"><tspan fill="rgb(0,0,0)" stroke="none">internal_error</tspan></tspan></tspan></text>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.CustomShape">
+       <g id="id16">
+        <rect class="BoundingBox" stroke="none" fill="none" x="13619" y="6070" width="3504" height="1504"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 17121,6822 C 17121,6953 17040,7083 16886,7197 16733,7311 16512,7406 16246,7471 15980,7537 15678,7572 15371,7572 15063,7572 14761,7537 14495,7471 14229,7406 14008,7311 13855,7197 13701,7083 13620,6953 13620,6822 13620,6690 13701,6560 13855,6446 14008,6332 14229,6237 14495,6172 14761,6106 15063,6071 15370,6071 15678,6071 15980,6106 16246,6172 16512,6237 16733,6332 16886,6446 17040,6560 17121,6690 17121,6821 L 17121,6822 Z"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Sans, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="14286" y="6942"><tspan fill="rgb(0,0,0)" stroke="none">rec_datagram</tspan></tspan></tspan></text>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.ConnectorShape">
+       <g id="id17">
+        <rect class="BoundingBox" stroke="none" fill="none" x="7653" y="1104" width="7719" height="4969"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 15370,6071 C 15370,2857 12943,1343 8088,1254"/>
+        <path fill="rgb(0,0,0)" stroke="none" d="M 7653,1250 L 8102,1404 8104,1104 7653,1250 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.TextShape">
+       <g id="id18">
+        <rect class="BoundingBox" stroke="none" fill="none" x="12675" y="4166" width="3695" height="746"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Sans, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="12925" y="4609"><tspan fill="rgb(0,0,0)" stroke="none">internal_error</tspan></tspan></tspan></text>
        </g>
       </g>
      </g>

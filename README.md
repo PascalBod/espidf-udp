@@ -64,7 +64,8 @@ To configure an ESP-IDF application, run `idf.py menuconfig`, and select **Espid
 * **WiFi Password**: associated password
 * **Retry Period, in ms**: period between two successive connection attempts, after the connection has been lost
 * **IPV4 Address**: address of the host where to send datagrams
-* **Port**: host port 
+* **Destination Port**: host port where to send datagrams
+* **Reception port**: local port waiting for datagrams
 
 <a name="buildingAndFlashing"></a>
 
