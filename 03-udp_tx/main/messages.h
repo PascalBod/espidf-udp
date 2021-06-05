@@ -33,7 +33,7 @@ typedef enum {
 	CW_AP_NOK, // For internal use.
 	CW_TIMEOUT, // For internal use.
 	SD_CONNECTION_STATUS,
-	SD__SEND_ERROR,
+	SD_SEND_ERROR,
 	SD_TIMEOUT,  // For internal used.
 	SV_TIMEOUT,  // For internal use.
 	SV_INTERNAL_ERROR,
@@ -62,7 +62,7 @@ typedef struct {
 //========================================
 // For SD_SEND_ERROR message.
 typedef enum {
-	CW_ERR_1,
+	CW_SEND_ERR,
 } sd_send_error_type_t;
 
 typedef struct {

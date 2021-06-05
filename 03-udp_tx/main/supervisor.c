@@ -38,8 +38,8 @@ static const char *TAG = "SV";
 // SSID and password of the access point to be used must
 // be configured by the configuration utility before building
 // the application.
-static char *SSID = CONFIG_UDPSENDER_WIFI_SSID;
-static char *PASSWORD = CONFIG_UDPSENDER_WIFI_PASSWORD;
+static char *SSID = CONFIG_UDP_WIFI_SSID;
+static char *PASSWORD = CONFIG_UDP_WIFI_PASSWORD;
 
 // Input queue.
 QueueHandle_t sv_input_queue;

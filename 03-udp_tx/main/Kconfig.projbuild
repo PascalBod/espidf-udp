@@ -1,35 +1,35 @@
 menu "Espidf-udp Configuration"
 
-    config UDPSENDER_WIFI_SSID
+    config UDP_WIFI_SSID
         string "WiFi SSID"
         default "myssid"
         help
-            SSID (network name) for UdpSender to connect to.
+            SSID (network name) to connect to.
 
-    config UDPSENDER_WIFI_PASSWORD
+    config UDP_WIFI_PASSWORD
         string "WiFi Password"
         default "mypassword"
         help
-            WiFi password (WPA or WPA2) forUdpSender to use.
+            WiFi password (WPA or WPA2) to use.
 
-    config UDPSENDER_RETRY_PERIOD_MS
+    config UDP_RETRY_PERIOD_MS
         int "Retry Period, in ms"
         range 0 65535
         default 10000
         help
             Set the period between two successive connection attempts.
 
-    config UDPSENDER_IPV4_ADDR
-        string "IPV4 Address"
+    config UDP_IPV4_ADDR
+        string "IPV4 Destination Address"
         default "192.168.1.10"
         help
-            IPV4 address to which UdpSender will send data.
+            IPV4 address where to send data.
 
-    config UDPSENDER_PORT
-        int "Port"
+    config UDPDESTINATION_PORT
+        int "Destination Port"
         range 0 65535
         default 44444
         help
-            The remote port to which UdpSender will send data.
+            The remote port where to send data.
 
 endmenu

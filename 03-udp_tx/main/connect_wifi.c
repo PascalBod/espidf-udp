@@ -40,10 +40,10 @@
 
 #define INPUT_QUEUE_LENGTH 3
 
-#define CONNECT_RETRY_PERIOD_MS CONFIG_UDPSENDER_RETRY_PERIOD_MS
+#define CONNECT_RETRY_PERIOD_MS CONFIG_UDP_RETRY_PERIOD_MS
 
-#define DEST_IPV4_ADDR CONFIG_UDPSENDER_IPV4_ADDR
-#define DEST_PORT CONFIG_UDPSENDER_PORT
+#define DEST_IPV4_ADDR CONFIG_UDP_IPV4_ADDR
+#define DEST_PORT CONFIG_UDPDESTINATION_PORT
 
 static const char *TAG = "CW";
 
@@ -383,13 +383,24 @@ void connect_wifi_task(void *pvParameters) {
 				break;
 			}
 			if (received_message.message == CW_SEND_DATAGRAM) {
+				// Send datagram.
 				uint16_t payload_length = received_message.cw_send_datagram.payload_length;
 				ESP_LOGI(TAG, "Sending a datagram - %d", payload_length);
 				int err = sendto(sock, received_message.cw_send_datagram.payload,
 						         payload_length, 0, (struct sockaddr *)&dest_addr,
 								 sizeof(dest_addr));
 				if (err < 0) {
+					// Error on send. Inform send_datagram task.
 					ESP_LOGE(TAG, "Error from sendto: %d", errno);
+					message_to_send.message = SD_SEND_ERROR;
+					message_to_send.sd_send_error.error = CW_SEND_ERR;
+					fr_rs = send_to_queue(sd_input_queue, &message_to_send, TAG);
+					if (fr_rs != pdTRUE) {
+						ESP_LOGE(TAG, "Error on sending message to send_datagram - %d", fr_rs);
+						send_error(CW_QUEUE_ERR, TAG);
+						current_state = CW_ERROR_ST;
+						break;
+					}
 					break;
 				}
 				// Stay in same state.

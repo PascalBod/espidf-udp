@@ -213,6 +213,12 @@ void send_datagram_task(void *pvParameters) {
 				ESP_LOGE(TAG, "SD_WAIT_SEND_PERIOD_ST - unexpected connected conntection_status message.");
 				break;
 			}
+			if (received_message.message == SD_SEND_ERROR) {
+				// connect_wifi could not send our datagram, and logged the error.
+				// So, we simply ignore the message.
+				// Stay in same state.
+				break;
+			}
 			// At this stage, unexpected message.
 			ESP_LOGE(TAG, "SD_WAIT_SEND_PERIOD_ST - unexpected message received: %d",
 					received_message.message);
