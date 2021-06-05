@@ -27,11 +27,12 @@
 
 #include "connect_wifi.h"
 #include "send_datagram.h"
+#include "rec_datagram.h"
 #include "supervisor.h"
 
 #define LOOP_PERIOD_MS 180000
 
-static const char *VERSION = "0.8.0";
+static const char *VERSION = "0.11.0";
 
 static const char *TAG = "MN";
 
@@ -59,6 +60,7 @@ void app_main(void)
     xTaskCreate(supervisor_task, "supervisor", 2000, NULL, 5, NULL);
     xTaskCreate(connect_wifi_task, "connect_wifi", 3000, NULL, 5, NULL);
     xTaskCreate(send_datagram_task, "send_datagram", 2000, NULL, 5, NULL);
+    xTaskCreate(rec_datagram_task, "rec_datagram", 2000, NULL, 5, NULL);
 
     // Do not exit from app_main().
     while (true) {

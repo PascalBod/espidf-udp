@@ -100,7 +100,7 @@ void send_datagram_task(void *pvParameters) {
 	const TickType_t delay_60s = pdMS_TO_TICKS(60000);
 
 	// The datagram payload is an ASCII message containing a counter.
-	char payload_data[] = "This is message 000.";
+	char payload_data[] = "This is message 001 from ESP32.";
 	const uint8_t payload_counter_index = 16;
 	const uint8_t payload_length = strlen(payload_data);
 	uint8_t payload_counter;
@@ -136,7 +136,7 @@ void send_datagram_task(void *pvParameters) {
 		}
 	}
 
-	payload_counter = 0;
+	payload_counter = 1;
 
 	while (true) {
 
@@ -163,7 +163,7 @@ void send_datagram_task(void *pvParameters) {
 				ESP_LOGI(TAG, "SD_WAIT_CONN_STATUS_ST - connection_status message received - %d",
 						(uint8_t)connected);
 				if (connected) {
-					ESP_LOGI(TAG, "SD_WAIT_SEND_PERIOD_ST - sending a datagram - %03d", payload_counter);
+					ESP_LOGI(TAG, "SD_WAIT_SEND_PERIOD_ST - sending a datagram to PC: %s", payload_data);
 					send_and_wait((uint8_t *)payload_data, payload_length,
 							      timer, &current_state);
 					if (current_state == SD_ERROR_ST) {
@@ -184,14 +184,14 @@ void send_datagram_task(void *pvParameters) {
 			if (received_message.message == SD_TIMEOUT) {
 				// End of wait period, send a new datagram.
 				if (payload_counter == 0xff) {
-					payload_counter = 0;
+					payload_counter = 1;
 				} else {
 					payload_counter++;
 				}
-				ESP_LOGI(TAG, "SD_WAIT_SEND_PERIOD_ST - sending a datagram - %03d", payload_counter);
 				payload_data[payload_counter_index + 2] = (uint8_t)'0' + payload_counter % 10;
 				payload_data[payload_counter_index + 1] = (uint8_t)'0' + (payload_counter / 10) % 10;
 				payload_data[payload_counter_index] = (uint8_t)'0' + (payload_counter / 100) % 10;
+				ESP_LOGI(TAG, "SD_WAIT_SEND_PERIOD_ST - sending a datagram to PC: %s", payload_data);
 				send_and_wait((uint8_t *)payload_data, payload_length,
 						      timer, &current_state);
 				if (current_state == SD_ERROR_ST) {

@@ -4,17 +4,21 @@ import socket
 import sys
 import time
  
-msgFromPC = "Hello from PC"
-bytesToSend  = str.encode(msgFromPC)
+counter = 1
 
-# Use the IP address of the ESP32.
-serverAddressPort   = ("192.168.1.25", 3333)
-
-bufferSize          = 1024
+# Adapt to the IP address of the ESP32.
+serverAddressPort   = ("192.168.1.27", 3333)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 while 1:
+    msg = f'This is message {counter:03} from PC.'
+    bytesToSend  = str.encode(msg)
+    print(f'Sending a datagram to ESP32: {msg}')
     s.sendto(bytesToSend, serverAddressPort)
     time.sleep(25)
+    if counter == 255:
+        counter = 1
+    else:
+        counter += 1
 
