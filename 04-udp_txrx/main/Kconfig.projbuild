@@ -1,0 +1,42 @@
+menu "Espidf-udp Configuration"
+
+    config UDP_WIFI_SSID
+        string "WiFi SSID"
+        default "myssid"
+        help
+            SSID (network name) to connect to.
+
+    config UDP_WIFI_PASSWORD
+        string "WiFi Password"
+        default "mypassword"
+        help
+            WiFi password (WPA or WPA2) to use.
+
+    config UDP_RETRY_PERIOD_MS
+        int "Retry Period, in ms"
+        range 0 65535
+        default 10000
+        help
+            Set the period between two successive connection attempts.
+
+    config UDP_IPV4_ADDR
+        string "IPV4 Destination Address"
+        default "192.168.1.10"
+        help
+            IPV4 address where to send data.
+
+    config UDPDESTINATION_PORT
+        int "Destination Port"
+        range 0 65535
+        default 44444
+        help
+            The remote port where to send data.
+
+    config UDPRECEPTION_PORT
+        int "Reception Port"
+        range 0 65535
+        default 44444
+        help
+            The local port that will receive data.
+
+endmenu
