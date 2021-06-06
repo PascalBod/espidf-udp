@@ -31,6 +31,8 @@ The ESP-IDF applications demonstrates:
 * how to handle a connection to the Internet via a Wi-Fi access point, in a way that can easily be adapted to "rainy days", as Espressif says in [their documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/wifi.html#event-handling)
 * the use of a design pattern relying on non-blocking inter-task communication (see [this article](https://www.monblocnotes.org/node/1906) for a little bit more information)
 
+The aim of these sample applications is not to provide a reliable communication between an ESP32 and a PC.  
+
 <a name="target"></a>
 
 # Target
