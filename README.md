@@ -18,7 +18,7 @@
 
 # Overview
 
-This repository contains several applications that demonstrate step-by-step how to exchange an ESP-IDF application and a PC application using UDP datagrams.
+This repository contains several applications that demonstrate step-by-step how to exchange messages between an ESP-IDF application and a PC application using UDP datagrams.
 
 These applications are:
 * *wifi*, stored in `01-wifi` directory: an ESP-IDF application that demonstrates how to connect to a Wi-Fi Access Point
