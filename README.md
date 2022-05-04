@@ -1,20 +1,6 @@
-# Table of contents
+### Table of contents
 
-* [Overview](#overview)
-* [Target](#target)
-* [Development environment for ESP-IDF applications](#developmentEnvironmentESPIDF)
-* [Reference documents](#referenceDocuments)
-* [Configuration](#configuration)
-* [Building and flashing](#buildingAndFlashing)
-  * [From command prompt](#fromCommandPrompt)
-  * [From Eclipse](#fromEclipse)
-* [Applications architecture](#applicationsArchitecture)
-  * [Overview](#aaOverview)
-  * [Task](#aaTask)
-  * [Message protocol](#aaMessageProtocol)
-* [License](#license)
-
-<a name="overview"></a>
+Click on the ![](images/tocIcon.png) icon above.
 
 # Overview
 
@@ -33,37 +19,34 @@ The ESP-IDF applications demonstrates:
 
 The aim of these sample applications is not to provide a reliable communication between an ESP32 and a PC.  
 
-<a name="target"></a>
-
 # Target
 
-The target for the ESP-IDF applications is an [ESP32-DevKitC](https://www.espressif.com/en/products/devkits/esp32-devkitc/overview) with an ESP32-WROVER-B module. Any equivalent module can be used.
+## Hardware and software
 
-ESP-IDF release is `4.2.1`.
+The target for the ESP-IDF applications is an [ESP32-DevKitC](https://www.espressif.com/en/products/devkits/esp32-devkitc/overview) with an ESP32-WROVER-B module. Any equivalent board can be used.
+
+ESP-IDF release is `4.2.1`, or a more recent one.
 
 The target for the PC applications is a PC with Python 3.
 
-The PC and the ESP32 module must be connected to the same LAN. This is the case if the two of them connect to your home Wi-Fi Access Point, for instance.
+[This short tutorial](https://github.com/PascalBod/lm-esp32-eclipse) describes a way to make a virtual machine (VM) configured for ESP32 software development with Eclipse, and configured with Python 3.
 
-<a name="developmentEnvironmentESPIDF"></a>
+## Network connectivity
 
-# Development environment for ESP-IDF applications
+If you are using the VM referenced above, be sure to configure it so that it is reachable through your network:
+* Select VirtualBox **Devices > Network > Network Settings...** menu
+* Configure **Adapter 1** in the following way:
+  * Set **Attached to** to **Bridged Adapter**
+  * For **Name**, select the Wi-Fi network interface
+* Click on the network icon of the VM, in the bottom right side and click on **Disconnect** and then click on **Wired connection 1**. This ensures that your VM immediately gets an IP adress in the right subnetwork
 
-This [short tutorial](https://github.com/PascalBod/lm20.1-esp32-eclipse) explains how to set up a virtual machine configured for ESP32 software development with Eclipse.
+Starting from step 3, you'll have to connect the ESP32 board to the VM. At a connectivity point of view, the easiest way to do this is to ensure that the ESP32 and the VM both connect to the same Wi-Fi access point. 
 
-<a name="referenceDocuments"></a>
-
-# Reference documents
-
-* [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/v4.2.1/esp32/index.html)
-* [Wi-Fi Driver](https://docs.espressif.com/projects/esp-idf/en/v4.2.1/esp32/api-guides/wifi.html)
-* [General Notes About ESP-IDF Programming / Application startup](https://docs.espressif.com/projects/esp-idf/en/v4.2.1/esp32/api-guides/general-notes.html#application-startup)
-
-<a name="configuration"></a>
+In the VM, check the IP address that has been assigned to it, with the `ifconfig` command. For the ESP32, the assigned IP adress is displayed in the trace messages. They both must be in the same subnetwork.
 
 # Configuration
 
-To configure an ESP-IDF application, run `idf.py menuconfig`, and select **Espidf-udp Configuration**. Depending on the application, some or all of the following parameters have to be set:
+To configure the ESP-IDF applications provided in steps 1, 3 and 4, double-click on `sdkconfig` in Eclipse's Project Explorer view, or run `idf.py menuconfig` in a terminal (in this case, don't forget to [configure the terminal environment as explained by ESP-IDF documentation](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html#step-4-set-up-the-environment-variables)), and then select **Espidf-udp Configuration**. Depending on the application, some or all of the following parameters have to be set:
 * **WiFi SSID**: the SSID of the access point to be used
 * **WiFi Password**: associated password
 * **Retry Period, in ms**: period between two successive connection attempts, after the connection has been lost
@@ -71,13 +54,7 @@ To configure an ESP-IDF application, run `idf.py menuconfig`, and select **Espid
 * **Destination Port**: host port where to send datagrams
 * **Reception port**: local port waiting for datagrams
 
-The configuration can be modified from Eclipse as well (check the [documentation](https://github.com/espressif/idf-eclipse-plugin)).
-
-<a name="buildingAndFlashing"></a>
-
 # Building and flashing
-
-<a name="fromCommandPrompt"></a>
 
 ## From command prompt
  
@@ -91,23 +68,15 @@ Replace `<port>` by the name of the serial-over-USB port.
 
 To exit the serial monitor, type ``Ctrl-]``.
 
-<a name="fromEclipse"></a>
-
 ## From Eclipse
 
-Check the end of this [short tutorial](https://github.com/PascalBod/lm20.1-esp32-eclipse).
-
-<a name="applicationsArchitecture"></a>
+Check the end of this [short tutorial](https://github.com/PascalBod/lm-esp32-eclipse).
 
 # Applications architecture
 
-<a name="aaOverview"></a>
-
 ## Overview
 
-Every ESP-IDF application is built by composing *tasks* that exchange *messages*.
-
-<a name="aaTask"></a>
+Every ESP-IDF application in steps 1, 3 and 4 is built by composing *tasks* that exchange *messages*.
 
 ## Task
 
@@ -129,13 +98,14 @@ A specific task, the *supervisor* task, is in charge of ensuring application con
 
 In these sample applications, the supervisor task is kept very simple: it does not try to act on errors.
 
-<a name="aaMessageProtocol"></a>
-
 ## Message protocol
 
 It's up to every task to define its message protocol, namely the list of messages it accepts, and how it reacts to each of them. The possible reactions are defined as transitions from one state to another one, depending on the messages, and as actions that are performed when entering a new state.
 
-<a name="license"></a>
+# Reference documents
+
+* [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/index.html)
+* [Wi-Fi Driver](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-guides/wifi.html)
 
 # License
 
@@ -144,4 +114,3 @@ it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version. Check the `COPYING` file for 
 more information.
-

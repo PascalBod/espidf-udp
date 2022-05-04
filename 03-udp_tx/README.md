@@ -1,14 +1,6 @@
-# Table of contents
+### Table of contents
 
-* [Overview](#overview)
-* [Architecture](#architecture)
-  * [Application tasks](#applicationTasks)
-    * [connect_wifi](#connectWifi)
-    * [send_datagram](#sendDatagram)
-    * [supervisor](#supervisor)
-  * [Overview of messages and tasks](#overviewOfMessagesAndTasks)
-
-<a name="overview"></a>
+Click on the ![](../images/tocIcon.png) icon above.
 
 # Overview
 
@@ -17,11 +9,7 @@ is established, it sends UDP datagrams to a remote IP address and port, on a per
 
 When the connection with the Wi-Fi access point is lost, the application tries to reconnect.
 
-<a name="architecture"></a>
-
 # Architecture
-
-<a name="applicationTasks"></a>
 
 ## Application tasks
 
@@ -29,8 +17,6 @@ The application is made of three tasks:
 * *connect_wifi*
 * *send_datagram*
 * *supervisor*
-
-<a name="connectWifi"></a>
 
 ### connect_wifi
 
@@ -59,8 +45,6 @@ Several transitions are not present in the diagram, in order to keep it simple:
 
 The send_datagram message is accepted only when the task is in wait_msg_disconnect state.
 
-<a name="sendDatagram"></a>
-
 ### send_datagram
 
 The send_datagram task requests the transmission of a datagram to the remote host, on a periodic basis.
@@ -75,15 +59,11 @@ It generates the following messages:
 
 After initialization, the task waits for a connection_status message informing it that access to the Internet is available. Upon reception of this message, it sends the send_datagram message to the connect_wifi task. Then, on a periodic basis, it sends another send_datagram message, until it receives a connection_status message saying that the access to the Internet is lost.
 
-<a name="supervisor"></a>
-
 ### supervisor
 
 The supervisor task starts the connect_wifi task and then sends the connect messages to it.
 
 When it receives an internal_error message, it reacts depending on the origin of the error. Currently, it simply generates a log message.
-
-<a name="overviewOfMessagesAndTasks"></a>
 
 ## Overview of messages and tasks
 

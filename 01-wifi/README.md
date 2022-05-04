@@ -1,13 +1,6 @@
-# Table of contents
+### Table of contents
 
-* [Overview](#overview)
-* [Architecture](#architecture)
-  * [Application tasks](#applicationTasks)
-    * [connect_wifi](#connectWifi)
-    * [supervisor](#supervisor)
-  * [Overview of messages and tasks](#overviewOfMessagesAndTasks)
-
-<a name="overview"></a>
+Click on the ![](../images/tocIcon.png) icon above.
 
 # Overview
 
@@ -15,19 +8,13 @@ This application initiates a connection to a Wi-Fi access point.
 
 When the connection with the Wi-Fi access point is lost, the application tries to reconnect.
 
-<a name="architecture"></a>
-
 # Architecture
-
-<a name="applicationTasks"></a>
 
 ## Application tasks
 
 The application is made of two tasks:
 * *connect_wifi*
 * *supervisor*
-
-<a name="connectWifi"></a>
 
 ### connect_wifi
 
@@ -51,15 +38,11 @@ Several transitions are not present in the diagram, in order to keep it simple:
 * transitions leading to the error state
 * transitions going from a task to itself, corresponding to ignored unexpected messages
 
-<a name="supervisor"></a>
-
 ### supervisor
 
 The supervisor task starts the connect_wifi task and then sends the connect messages to it.
 
 When it receives an internal_error message, it reacts depending on the origin of the error. Currently, it simply generates a log message.
-
-<a name="overviewOfMessagesAndTasks"></a>
 
 ## Overview of messages and tasks
 
