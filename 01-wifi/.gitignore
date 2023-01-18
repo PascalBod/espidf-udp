@@ -3,4 +3,6 @@
 .cproject
 .project
 sdkconfig
+sdkconfig.old
+
 
